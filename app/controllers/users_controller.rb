@@ -9,14 +9,11 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
       user = User.new(username: params[:username], email: params[:email], password: params[:password])
-      # binding.pry
-
       if (user.username != "") && (user.email != "") && (user.password != nil)
         user.save
         session[:user_id] = user.id
-        redirect to "/tweets"
+        redirect to "/homepage"
       else
         redirect "/signup"
       end
