@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    binding.pry
     if Helpers.is_logged_in?(session) == true
       redirect to "/homepage"
     else
-      erb :"/signup"
+      erb :"/users/signup"
     end
   end
 
