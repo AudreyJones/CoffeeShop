@@ -6,6 +6,6 @@ class OrdersController < ApplicationController
 
   post "/order" do
     binding.pry
-    order = Order.new(:)
+    
   end
 end
