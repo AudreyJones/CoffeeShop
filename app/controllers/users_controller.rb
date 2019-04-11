@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+# User accesses Sign Up Page, protected view
   get '/signup' do
     if Helpers.is_logged_in?(session) == true
       redirect to "/users/homepage"
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
     end
   end
 
+# Take User's Sign-Up info and takes them to their homepage (or back to sign up)!
   post '/signup' do
       user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if (user.username != "") && (user.email != "") && (user.password != nil)
@@ -19,9 +21,10 @@ class UsersController < ApplicationController
       end
     end
 
+# User accesses Log In Page
     get '/login' do
       if Helpers.is_logged_in?(session) == true
-        redirect to "/tweets"
+        redirect to "/users/homepage"
       else
         erb :login
       end
