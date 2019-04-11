@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if Helpers.is_logged_in?(session) == true
-      redirect to "/homepage"
+      redirect to "/users/homepage"
     else
       erb :"/users/signup"
     end
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       if (user.username != "") && (user.email != "") && (user.password != nil)
         user.save
         session[:user_id] = user.id
-        redirect to "/homepage"
+        erb :"/users/homepage"
       else
         redirect "/signup"
       end
@@ -43,8 +43,14 @@ class UsersController < ApplicationController
         session.destroy
         redirect to "/login"
       else
-        redirect to "/homepage"
+        redirect to "/users/homepage"
       end
+    end
+
+    get '/users/homepage' do
+      binding.pry
+      @user = User.find_by_id(session[:user_id])
+      erb :"/users/homepage"
     end
 
 end
