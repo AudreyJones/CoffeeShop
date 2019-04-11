@@ -1,11 +1,15 @@
 <h1>Let us take your Order:</h1>
 
 <form method="post" action="/order">
-  <ul>
-  <label>What drink type would you like?</label>
-        <li><input type="checkbox" id="Latte" name="Latte" value="Latte"/></li>
-        <li><input type="checkbox" id="Hot Coffee" name="Hot Coffee" value="Hot Coffee"/></li>
-        <li><input type="checkbox" id="Iced Coffee" name="Iced Coffee" value="Iced Coffee"/></li>
+  <ul><label>What drink type would you like?</label>
+        <li><input type="checkbox" id="latte" name="latte" value="Latte"/> Latte</li>
+        <li><input type="checkbox" id="cappuccino" name="cappuccino" value="Cappuccino"/> Cappuccino</li>
+        <li><input type="checkbox" id="hot coffee" name="hot coffee" value="Hot Coffee"/> Hot Coffee</li>
+        <li><input type="checkbox" id="iced coffee" name="iced coffee" value="Iced Coffee"/> Iced Coffee</li>
+        <li><input type="checkbox" id="frozen coffee" name="iced coffee" value="Frozen Coffee"/> Frozen Coffee</li>
+        <br>
+        <li>Any additional drink modifications (flavor, foam, etc)? <input type="text" id="mods" name="mods" value="mods"/></li>
+        <br>
         <input type="submit" id="submit" name="submit" value="Place my Order!"/>
   </ul>
 </form>
