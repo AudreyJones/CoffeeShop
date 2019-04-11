@@ -9,8 +9,12 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  get "/" do
-    erb :home
+  # get "/" do
+  #   erb :"users/home"
+  # end
+
+  get "/orders/new_order" do
+    erb :"orders/new_order"
   end
 
 end

@@ -1,5 +1,11 @@
 <h1>Let us take your Order:</h1>
 
-<form>
-<input type="text" id="drink">
+<form method="post" action="/order">
+  <ul>
+  <label>What drink type would you like?</label>
+        <li><input type="checkbox" id="Latte" name="Latte" value="Latte"/></li>
+        <li><input type="checkbox" id="Hot Coffee" name="Hot Coffee" value="Hot Coffee"/></li>
+        <li><input type="checkbox" id="Iced Coffee" name="Iced Coffee" value="Iced Coffee"/></li>
+        <input type="submit" id="submit" name="submit" value="Place my Order!"/>
+  </ul>
 </form>
