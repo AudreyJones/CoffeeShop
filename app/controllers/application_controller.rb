@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions unless test?
     set :session_secret, "secret"
+    # register Sinatra::Flash
   end
 
   # get "/" do
@@ -14,6 +15,8 @@ class ApplicationController < Sinatra::Base
   # end
 
   get "/orders/new_order" do
+    # flash[:message] = "a string"
+    # binding.pry
     erb :"orders/new_order"
   end
 
