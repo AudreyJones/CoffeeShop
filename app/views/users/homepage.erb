@@ -2,10 +2,16 @@
 
 <br>
 
-<div>Your Current Order: </div>
+<div>Your Current Order: <%=@user.orders%> </div>
+<br>
+<div>Your Current Preferences: <%=@user.preferences%> </div>
   <ul>
 
 
 
   </ul>
+  <br>
+  <br>
 <h4>I would like to:</h4>
+<br>
+<a href="/orders/edit_order">Change my Current Order</a>
