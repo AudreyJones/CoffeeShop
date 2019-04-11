@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20190411142828) do
 
   create_table "orders", force: :cascade do |t|
     t.string  "user_id"
-    t.boolean "favorite"
+    t.boolean "favorite", default: false
   end
 
   create_table "users", force: :cascade do |t|
