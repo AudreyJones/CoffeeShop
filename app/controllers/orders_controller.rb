@@ -6,6 +6,14 @@ class OrdersController < ApplicationController
 
   post "/order" do
     binding.pry
-    
+    order = Order.new()
+    order.save
+    binding.pry
   end
+
+  get "/orders/show_order" do
+    @order = Order.find_by_id()
+    erb :show_order
+  end
+
 end
