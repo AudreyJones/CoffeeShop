@@ -2,7 +2,16 @@
 
 <br>
 
-<div>Your Current Order: <%=@orderdrink.drink%> </div>
+<div>Your Current Order: <% if @orderdrink.drink != nil %>
+                            <%=@orderdrink.drink%>
+                        <% else %>
+                            <%= puts "You do not have any current orders"%>
+                        <%end%>
+
+
+
+
+</div>
 <br>
 <p>Favorited? <%=@order.favorite%></p>
 <br>
