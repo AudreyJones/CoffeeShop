@@ -5,14 +5,23 @@ class OrdersController < ApplicationController
   end
 
   post "/order" do
-    binding.pry
     @user = User.find_by_id(session[:user_id])
-    order = Order.new(user_id: session[:user_id], favorite: params[:favorite])
-    order.save
+    @order = Order.create(user_id: session[:user_id], favorite: params[:favorite])
+    params.each do |key, value|
+      if key == "cappuccino" || key == "latte" || key == "hot coffee" || key == "frozen coffee" || key == "iced coffee"
+        @drink = Drink.create(drink_type: key)
+        @orderdrink = OrderDrink.create(order_id: @order.id, drink_id: @drink.id)
+      end
+      @drink
+      @orderdrink
+    end
+    @drink.modifications = params[:mods]
+      binding.pry
+    @drink.make_drink
   end
 
   get "/orders/show_order" do
-    @order = Order.find_by_id()
+    # @order = Order.find_by_id()
     erb :show_order
   end
 

@@ -6,4 +6,6 @@ class Helpers
   def self.is_logged_in?(session)
     session[:user_id] != nil ? true : false
   end
+
+  #Make_drink was here
 end
