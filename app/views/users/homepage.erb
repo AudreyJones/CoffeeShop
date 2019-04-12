@@ -2,8 +2,17 @@
 
 <br>
 
-<div>Your Current Order: <%=@user.orders%> </div>
-<p>Favorited?<%=@order.favorite%></p>
+<div>Your Current Order: <%=@orderdrink.drink%> </div>
+<br>
+<p>Favorited? <%=@order.favorite%></p>
+<br>
+<p>Your Past Orders:
+  <%@user.drinks.each do |drink| %>
+    <a href="/drinks/<%=drink.drink_type%>"><%=drink.drink_type%></a>, <%=drink.modifications%>
+
+  <%end%>
+
+</p>
 <br>
   <ul>
 

@@ -16,8 +16,9 @@ class OrdersController < ApplicationController
       @orderdrink
     end
     @drink.modifications = params[:mods]
-      binding.pry
-    @drink.make_drink
+    # binding.pry
+    # OrderDrink.find_by_id()
+    erb :"/users/homepage"
   end
 
   get "/orders/show_order" do
