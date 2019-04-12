@@ -1,18 +1,11 @@
 <h1>Welcome, <%=@user.username%>!</h1>
 
 <br>
+<p>Favorited?  </p>
 
-<div>Your Current Order: <%=@orderdrink.drink%> </div> ##Needs to iterate through Order and pick out each drank!#
-<br>
-<p>Favorited?
-  <%if @order.favorite == "true"%>
-    <h1>Yes</h1>
-  <%else %>
-</p>
-<br>
-<p>Your Past Orders:
-  <%@user.drinks.each do |drink| %>
-    <a href="/drinks/<%=drink.drink_type%>"><%=drink.drink_type%></a>, <%=drink.modifications%>
+<p>Orders Index:
+  <%@user.orders.each do |order| %>
+    <a href="/orders/<%=order.id%>">Order #<%=order.id%></a>
 
   <%end%>
 
