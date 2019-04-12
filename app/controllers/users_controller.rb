@@ -11,9 +11,7 @@ class UsersController < ApplicationController
 
 # Take User's Sign-Up info and takes them to their homepage (or back to sign up)!
   post '/signup' do
-    # binding.pry
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-# binding.pry
       if (@user.username != "") && (@user.email != "") && (@user.password != nil)
         @user.save
         session[:user_id] = @user.id
