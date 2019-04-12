@@ -4,7 +4,6 @@
 
 <div>Your Current Order: <%=@user.orders%> </div>
 <br>
-<div>Your Current Preferences: <%=@user.preferences%> </div>
   <ul>
 
 
@@ -14,4 +13,8 @@
   <br>
 <h4>I would like to:</h4>
 <br>
-<a href="/orders/edit_order">Change my Current Order</a>
+<ul>
+  <li><a href="/orders/edit_order">Edit my Current Order</a></li>
+  <li><a href="/orders/new_order">Start a new Order</a></li>
+  <li><a href="/users/logout">Log Out</a></li>
+</ul>

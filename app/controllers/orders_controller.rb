@@ -16,4 +16,8 @@ class OrdersController < ApplicationController
     erb :show_order
   end
 
+  get "/orders/edit_order" do
+    
+  end
+
 end

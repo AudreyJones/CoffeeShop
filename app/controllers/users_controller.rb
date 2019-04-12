@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       if Helpers.is_logged_in?(session) == true
         redirect to "/users/homepage"
       else
-        erb :login
+        erb :"/users/login"
       end
     end
 
@@ -36,10 +36,14 @@ class UsersController < ApplicationController
       @user = User.find_by(username: params[:username])
       session[:user_id] = @user.id
       if Helpers.is_logged_in?(session)
-        redirect to "tweets"
+        redirect to "/users/homepage"
       else
         erb :login
       end
+    end
+
+    get '/users/logout' do
+      erb :"/users/logout"
     end
 
     get '/logout' do
@@ -48,14 +52,18 @@ class UsersController < ApplicationController
         session.destroy
         redirect to "/login"
       else
-        redirect to "/users/homepage"
+        redirect to "/home"
       end
     end
 
     get '/users/homepage' do
-      binding.pry
-      @user = User.find_by_id(session[:user_id])
-      erb :"/users/homepage"
+      if Helpers.is_logged_in?(session) == true
+        @user = User.find_by_id(session[:user_id])
+# binding.pry
+        erb :"/users/homepage"
+      else
+        erb  :"/users/login"
+      end
     end
 
 end
