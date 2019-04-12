@@ -2,18 +2,13 @@
 
 <br>
 
-<div>Your Current Order: <% if @orderdrink.drink != nil %>
-                            <%=@orderdrink.drink%>
-                        <% else %>
-                            <%= puts "You do not have any current orders"%>
-                        <%end%>
-
-
-
-
-</div>
+<div>Your Current Order: <%=@orderdrink.drink%> </div> ##Needs to iterate through Order and pick out each drank!#
 <br>
-<p>Favorited? <%=@order.favorite%></p>
+<p>Favorited?
+  <%if @order.favorite == "true"%>
+    <h1>Yes</h1>
+  <%else %>
+</p>
 <br>
 <p>Your Past Orders:
   <%@user.drinks.each do |drink| %>

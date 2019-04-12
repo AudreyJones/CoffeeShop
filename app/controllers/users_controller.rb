@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       if (@user.username != "") && (@user.email != "") && (@user.password != nil)
         @user.save
         session[:user_id] = @user.id
-        erb :"/users/homepage"
+        erb :"/orders/new_order"
       else
         redirect "/signup"
       end
