@@ -6,9 +6,9 @@ class OrdersController < ApplicationController
 
   post "/order" do
     binding.pry
-    order = Order.new()
+    @user = User.find_by_id(session[:user_id])
+    order = Order.new(user_id: session[:user_id], favorite: params[:favorite])
     order.save
-    binding.pry
   end
 
   get "/orders/show_order" do
@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   end
 
   get "/orders/edit_order" do
-    
+    erb :"/orders/edit_order"
   end
 
 end
