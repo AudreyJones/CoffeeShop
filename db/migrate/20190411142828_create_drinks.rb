@@ -3,7 +3,6 @@ class CreateDrinks < ActiveRecord::Migration
     create_table :drinks do |t|
       t.string :drink_type
       t.string :ingredients
-      t.string :modifications, default: "none"
     end
   end
 end
