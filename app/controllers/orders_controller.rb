@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 
   get "/orders/new_order" do
-    binding.pry
     @drinks = Drink.all
     erb :"orders/new_order"
   end
