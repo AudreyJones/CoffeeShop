@@ -1,6 +1,7 @@
 <h1>Edit your Order:</h1>
 
-<form method="post" action="/edit_order">
+<form method="post" action="/orders/<%=order.id%>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
   <ul><label>What drink type would you like?</label>
         <%@drinks.each do |drink|%>
           <li><input type="checkbox" name="drinks[]" value="<%= drink.id %>"/> <%= drink.drink_type%></li>

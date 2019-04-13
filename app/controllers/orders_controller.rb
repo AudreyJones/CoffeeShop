@@ -31,10 +31,12 @@ class OrdersController < ApplicationController
       end
     end
     @current_order
-      # @current_order.each do |orderdrink|
-      #   this_drink = Drink.find_by_id((orderdrink.drink_id).to_i)
-      # end
     erb :"/orders/show_order"
+  end
+
+  post "/orders/:id" do
+    @user = User.find_by_id(session[:user_id])
+    @order = Order.find_by_id(params[:id])
   end
 
 end
