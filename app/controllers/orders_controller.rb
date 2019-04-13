@@ -13,9 +13,11 @@ class OrdersController < ApplicationController
     @drinks.each do |drink|
       #make an order to get order id
       #make orderdrinks that all link to that order
-      
-      Order.new()
-      Orderdrink.new()
+      # Order.new()
+      # Orderdrink.new()
+      this_drink = Drink.find_by_id(drink)
+      @order_drinks = OrderDrink.new(order_id: @order.id ,drink_id: drink)
+
     end
     # for params.each do |key, value|
     #   if key == "cappuccino" || key == "latte" || key == "hot coffee" || key == "frozen coffee" || key == "iced coffee"
