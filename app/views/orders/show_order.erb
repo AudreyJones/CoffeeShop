@@ -1,4 +1,4 @@
-<h1>Order #<%=@order.id%> - <%if @order.favorite == true%> Favorited
+<h1>Order #<%=@order.id%><%if @order.favorite == true%> - Favorited
 <%end%>
 
 
@@ -9,6 +9,6 @@
   <%=this_drink.drink_type%>
 <%end%></ul>
 <br>
-<a href=/orders/edit_order>Edit this order?</a>
+<a href="/orders/??????/edit" >Edit this order?</a>
 <br>
-<a href=/orders/delete_order>Delete this order?</a>
+<a href="/orders/@order.id/delete">Delete this order?</a>

@@ -2,7 +2,7 @@
 
 <form method="post" action="/orders/<%=order.id%>">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <ul><label>What drink type would you like?</label>
+  <ul><label>What drink type would you like to change your order to?</label>
         <%@drinks.each do |drink|%>
           <li><input type="checkbox" name="drinks[]" value="<%= drink.id %>"/> <%= drink.drink_type%></li>
         <%end %>
@@ -11,6 +11,6 @@
         <label for="yes">Yes </label><input type="radio" id="yes" name="favorite" value="true"> &nbsp; <label for="no">No </label><input type="radio" id="no" name="favorite" value="false">
         <br>
         <br>
-        <input type="submit" id="submit" name="submit" value="Place my Order!"/>
+        <input type="submit" id="submit" name="submit" value="Update my Order!"/>
   </ul>
 </form>
