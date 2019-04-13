@@ -3,13 +3,11 @@
 <br>
 <p>Favorited?  </p>
 
-<p>Orders Index:
+<ul>Orders Index:
   <%@user.orders.each do |order| %>
-    <a href="/orders/<%=order.id%>">Order #<%=order.id%></a>
-
+    <li><a href="/orders/<%=order.id%>">Order #<%=order.id%></a></li>
   <%end%>
-
-</p>
+</ul>
 <br>
   <ul>
 
