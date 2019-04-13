@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
       end
     end
     @current_order
+    # binding.pry
     erb :"/orders/show_order"
   end
 
