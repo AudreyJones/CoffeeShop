@@ -9,9 +9,11 @@ class UsersController < ApplicationController
     end
   end
 
-# Take User's Sign-Up info and takes them to their homepage (or back to sign up)!
+# Take User's Sign-Up info and takes them to create their first order (or,
+# if info is invalid, user is sent back to try signing up again)!
   post '/signup' do
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+      @drinks = Drink.all
       if (@user.username != "") && (@user.email != "") && (@user.password != nil)
         @user.save
         session[:user_id] = @user.id
