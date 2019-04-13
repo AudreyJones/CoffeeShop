@@ -10,13 +10,12 @@ class OrdersController < ApplicationController
     @order = Order.create(user_id: session[:user_id], favorite: params[:favorite])
     @drinks = params[:drinks]
     @drinks.each do |drink|
-      #make an order to get order id
+      #make an order to get order id -DONE
       #make orderdrinks that all link to that order
       # Order.new()
       # Orderdrink.new()
       this_drink = Drink.find_by_id(drink)
       @order_drink = OrderDrink.new(order_id: @order.id ,drink_id: drink)
-binding.pry
     end
     erb :"/users/homepage"
   end
@@ -28,8 +27,14 @@ binding.pry
   get "/orders/:id" do
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by_id(params[:id])
-    # binding.pry
-
+    @current_order = []
+    OrderDrink.all.each do |orderdrink|
+      if (orderdrink.order_id).to_i == @order.id
+        @current_order << orderdrink
+      end
+    end
+    @current_order #Works!!!
+      # binding.pry
     erb :"orders/show_order"
   end
 
