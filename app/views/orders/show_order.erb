@@ -1,4 +1,8 @@
-<h1>Order #<%=@order.id%></h1>
+<h1>Order #<%=@order.id%> - <%if @order.favorite == true%> Favorited
+<%end%>
+
+
+</h1>
 <br>
 <ul><%@current_order.each do |orderdrink|%>
   <li><%this_drink = Drink.find_by_id(orderdrink.drink_id)%></li>

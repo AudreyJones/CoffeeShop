@@ -1,6 +1,6 @@
 <h1>Edit your Order:</h1>
 
-<form method="post" action="/order">
+<form method="post" action="/edit_order">
   <ul><label>What drink type would you like?</label>
         <%@drinks.each do |drink|%>
           <li><input type="checkbox" name="drinks[]" value="<%= drink.id %>"/> <%= drink.drink_type%></li>

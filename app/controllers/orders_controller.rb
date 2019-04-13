@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  get "/orders/new_order" do
+  get "/orders/new_order" do ##Create of CRUD
     @drinks = Drink.all
     erb :"orders/new_order"
   end
@@ -16,23 +16,21 @@ class OrdersController < ApplicationController
     erb :"/users/homepage"
   end
 
-  get "/orders/edit_order" do
+  get "/orders/edit_order" do #Update of CRUD
     @drinks = Drink.all
     erb :"/orders/edit_order"
   end
 
-  get "/orders/:id" do
+  get "/orders/:id" do #Read of CRUD
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by_id(params[:id])
     @current_order = []
-
     OrderDrink.all.each do |orderdrink|
-      # binding.pry
       if (orderdrink.order_id).to_i == @order.id
         @current_order << orderdrink
       end
     end
-    @current_order #Works!!!
+    @current_order
       # @current_order.each do |orderdrink|
       #   this_drink = Drink.find_by_id((orderdrink.drink_id).to_i)
       # end

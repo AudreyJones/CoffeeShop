@@ -8,7 +8,7 @@
   <%@user.orders.each do |order| %>
     <li><a href="/orders/<%=order.id%>">Order #<%=order.id%></a>
      <%if order.favorite == true%>
-        Favorited
+        Favorite
     <%end%>
   <%end%></li>
 </ul>
