@@ -44,7 +44,8 @@ class OrdersController < ApplicationController
     new_drink = Drink.find_by_id(params[:drinks])
     @orderdrink.drink_id = new_drink.id #Update OrderDrink with New Drink choice!
     @order.favorite = params[:favorite] #Update favorite-ness of OrderDrink record
-# binding.pry
+    @orderdrink.save
+    @order.save
     erb :"/users/homepage" #Go to User's Index/Homepage
   end
 
