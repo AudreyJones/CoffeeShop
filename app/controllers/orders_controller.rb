@@ -20,8 +20,8 @@ class OrdersController < ApplicationController
 
   get "/orders/:id" do #Specific Order Show Page
     @user = User.find_by_id(session[:user_id])
-    @order = Order.find_by(params[:id])
-    binding.pry
+    @order = Order.find_by_id(params[:id])
+
     @current_order = []
     OrderDrink.all.each do |orderdrink|
       if (orderdrink.order_id).to_i == @order.id
@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
       end
     end
     @current_order
+    binding.pry
     erb :"/orders/show_order"
   end
 
