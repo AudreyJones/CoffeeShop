@@ -16,14 +16,14 @@ class OrdersController < ApplicationController
     erb :"/users/homepage" #Go to User's Index/Homepage
   end
 
-  get "/orders/:id/edit" do #Update/Edit Order
+  get "/orders/:id/edit" do #Update/Edit Sepcific Order
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by(user_id: @user.id)
     @drinks = Drink.all
     erb :"/orders/edit_order"
   end
 
-  get "/orders/:id" do #Specific Show Page
+  get "/orders/:id" do #Specific Order Show Page
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by(user_id: @user.id)
     @current_order = []
@@ -36,10 +36,13 @@ class OrdersController < ApplicationController
     erb :"/orders/show_order"
   end
 
-  post "/orders/:id" do
-    # binding.pry
+  patch "/orders/:id" do
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by_id(params[:id])
+    @orderdrink = OrderDrink.find_by(@user.id)
+    binding.pry
+    updated_drink = Drink.find_by_id(params[:drinks])
+
   end
 
   post "/orders/:id/delete" do
