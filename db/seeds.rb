@@ -6,8 +6,8 @@ user1 = User.create(username: "UserOne", email: "one@email.com", password: "Pass
 # user3 = User.create(username: "UserThree", email: "three@email.com", password: "PassThree")
 
 order1 = Order.create(user_id: 1)
-order2 = Order.create(user_id: 2, favorite: true)
-order3 = Order.create(user_id: 3)
+order2 = Order.create(user_id: 1, favorite: true)
+order3 = Order.create(user_id: 1)
 
 drink1 = Drink.create(drink_type: "Cappuccino", ingredients:"")
 drink2  = Drink.create(drink_type: "Iced Coffee", ingredients:"")

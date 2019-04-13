@@ -3,10 +3,14 @@
 <br>
 
 <ul>Orders Index:
+  <br>
+  <br>
   <%@user.orders.each do |order| %>
-    <li><a href="/orders/<%=order.id%>">Order #<%=order.id%></a></li>
-    <p>Favorited? <%=order.favorite%> </p>
-  <%end%>
+    <li><a href="/orders/<%=order.id%>">Order #<%=order.id%></a>
+     <%if order.favorite == true%>
+        Favorited
+    <%end%>
+  <%end%></li>
 </ul>
 <br>
 <br>
