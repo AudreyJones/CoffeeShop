@@ -1,6 +1,8 @@
-<h1>Here is your current Order:</h1>
+<h1>Order #<%=@order.id%></h1>
 
 <%@current_order.each do |orderdrink|%>
   <%this_drink = Drink.find_by_id(orderdrink.drink_id)%>
-  <%=this_drink.name%>
+  <%=this_drink.drink_type%>
+
+
 <%end%>

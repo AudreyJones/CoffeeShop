@@ -21,6 +21,6 @@ drink9 = Drink.create(drink_type: "Latte", ingredients:"")
 drink10 = Drink.create(drink_type: "Macchiato", ingredients:"")
 
 
-OrderDrink.create(order: order2, drink: drink3)
-OrderDrink.create(order: order3, drink: drink1)
+OrderDrink.create(order: order1, drink: drink1)
 OrderDrink.create(order: order2, drink: drink2)
+OrderDrink.create(order: order3, drink: drink3)

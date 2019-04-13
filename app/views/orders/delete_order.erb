@@ -1,0 +1,7 @@
+<h1>Which order would you like to delete?</h1>
+
+<ul> Your Orders:
+<%@user.orders.each do |order| %>
+  <li><a href="/orders/<%=order.id%>">Order #<%=order.id%></a></li>
+<%end%>
+</ul>

@@ -34,7 +34,12 @@ class OrdersController < ApplicationController
       end
     end
     @current_order #Works!!!
-      # binding.pry
+binding.pry
+      # @current_order.each do |orderdrink|
+      #
+      #   this_drink = Drink.find_by_id(orderdrink.drink_id)
+      #   # this_drink.drink_type
+      # end
     erb :"orders/show_order"
   end
 
