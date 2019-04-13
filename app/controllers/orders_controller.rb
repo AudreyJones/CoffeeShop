@@ -15,25 +15,10 @@ class OrdersController < ApplicationController
       # Order.new()
       # Orderdrink.new()
       this_drink = Drink.find_by_id(drink)
-      order_drink = OrderDrink.new(order_id: @order.id ,drink_id: drink)
-
+      @order_drink = OrderDrink.new(order_id: @order.id ,drink_id: drink)
+binding.pry
     end
-    # for params.each do |key, value|
-    #   if key == "cappuccino" || key == "latte" || key == "hot coffee" || key == "frozen coffee" || key == "iced coffee"
-    #     drink = Drink.create(drink_type: key)
-    #     @your_drinks << drink
-    #     @orderdrink = OrderDrink.create(order_id: @order.id, drink_id: drink.id)
-    #   end
-    # @orderdrink
-    # @your_drinks
-    # endDr
-    # @drink.modifications = params[:mods]  ###Needs to be linked to the drink it is for!!!
     erb :"/users/homepage"
-  end
-
-  get "/orders/show_order" do
-    # @order = Order.find_by_id()
-    erb :show_order
   end
 
   get "/orders/edit_order" do
@@ -41,6 +26,10 @@ class OrdersController < ApplicationController
   end
 
   get "/orders/:id" do
+    @user = User.find_by_id(session[:user_id])
+    @order = Order.find_by_id(params[:id])
+    # binding.pry
+
     erb :"orders/show_order"
   end
 
