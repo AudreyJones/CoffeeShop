@@ -37,12 +37,15 @@ class OrdersController < ApplicationController
   end
 
   patch "/orders/:id" do
-    @user = User.find_by_id(session[:user_id])
-    @order = Order.find_by_id(params[:id])
-    @orderdrink = OrderDrink.find_by(@user.id)
-    binding.pry
-    updated_drink = Drink.find_by_id(params[:drinks])
-
+    @user = User.find_by_id(session[:user_id]) #Find user
+    @order = Order.find_by_id(params[:id]) #Find order through session params
+    @orderdrink = OrderDrink.find_by(@user.id) #Find OrderDrink assoc with this user
+    old_drink = Drink.find_by_id(@orderdrink.drink_id)
+    new_drink = Drink.find_by_id(params[:drinks])
+    @orderdrink.drink_id = new_drink.id #Update OrderDrink with New Drink choice!
+    @order.favorite = params[:favorite] #Update favorite-ness of OrderDrink record
+# binding.pry
+    erb :"/users/homepage" #Go to User's Index/Homepage
   end
 
   post "/orders/:id/delete" do
