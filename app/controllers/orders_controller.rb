@@ -16,16 +16,12 @@ class OrdersController < ApplicationController
     erb :"/users/homepage" #Go to User's Index/Homepage
   end
 
-  get "/orders/:id/edit" do #Update/Edit Sepcific Order
-    @user = User.find_by_id(session[:user_id])
-    @order = Order.find_by(user_id: @user.id)
-    @drinks = Drink.all
-    erb :"/orders/edit_order"
-  end
+
 
   get "/orders/:id" do #Specific Order Show Page
     @user = User.find_by_id(session[:user_id])
-    @order = Order.find_by(user_id: @user.id)
+    @order = Order.find_by(params[:id])
+    binding.pry
     @current_order = []
     OrderDrink.all.each do |orderdrink|
       if (orderdrink.order_id).to_i == @order.id
@@ -34,6 +30,13 @@ class OrdersController < ApplicationController
     end
     @current_order
     erb :"/orders/show_order"
+  end
+
+  get "/orders/:id/edit" do #Update/Edit Sepcific Order
+    @user = User.find_by_id(session[:user_id])
+    @order = Order.find_by(user_id: @user.id)
+    @drinks = Drink.all
+    erb :"/orders/edit_order"
   end
 
   patch "/orders/:id" do
