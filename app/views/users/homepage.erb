@@ -1,11 +1,11 @@
 <h1>Welcome, <%=@user.username%>!</h1>
 
 <br>
-<p>Favorited?  </p>
 
 <ul>Orders Index:
   <%@user.orders.each do |order| %>
     <li><a href="/orders/<%=order.id%>">Order #<%=order.id%></a></li>
+    <p>Favorited? <%=order.favorite%> </p>
   <%end%>
 </ul>
 <br>
@@ -13,8 +13,6 @@
 <h4>I would like to:</h4>
 <br>
 <ul>
-  <li><a href="/orders/edit_order">Edit my Current Order</a></li>
   <li><a href="/orders/new_order">Start a new Order</a></li>
-  <li><a href="/orders/delete_order">Delete an Order</a></li>
   <li><a href="/users/logout">Log Out</a></li>
 </ul>
