@@ -50,11 +50,16 @@ class OrdersController < ApplicationController
     erb :"/users/homepage" #Go to User's Index/Homepage
   end
 
-  post "/orders/:id/delete" do
-    binding.pry
+  get "/orders/:id/delete" do #Delete order and orderdrink from db
+    #Find user, order, and orderdrink again
     @user = User.find_by_id(session[:user_id])
-    @order = Order.find_by(user_id: @user.id)
+    @order = Order.find_by(params[:id])
+    @orderdrink = OrderDrink.find_by_id(@order.id)
+    #Delete this specific order and orderdrink from database
     @order.destroy
+    @orderdrink.destroy
+    # binding.pry
+    #Send user back to their homepage
     redirect to "/users/homepage"
   end
 
