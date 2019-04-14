@@ -6,26 +6,36 @@ class OrdersController < ApplicationController
   end
 
   post "/order" do #Create a New Order
+#Re-find User and create a new order
     @user = User.find_by_id(session[:user_id])
     @order = Order.create(user_id: session[:user_id], favorite: params[:favorite])
+# Access all drinks that make up this order
     @drinks = params[:drinks]
+#For each drink ordered, create an OrderDrink to connect them to this Order's ID
     @drinks.each do |drink|
-      this_drink = Drink.find_by_id(drink)
-      @order_drink = OrderDrink.new(order_id: @order.id ,drink_id: drink)
+      @order_drink = OrderDrink.create(order_id: @order.id ,drink_id: drink)
+      # NOT NEEDED: Find a specific_drink = Drink.find_by_id(drink)
     end
+    @order_drink #make these order_drinks accessible outside of the loop
     erb :"/users/homepage" #Go to User's Index/Homepage
   end
 
   get "/orders/:id" do #Specific Order Show Page
+#Re-find User & Order
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by_id(params[:id])
+#Need to find OrderDrinks linked to this Order
+# binding.pry
     @current_order = []
+    # binding.pry
     OrderDrink.all.each do |orderdrink|
+      # binding.pry
       if (orderdrink.order_id).to_i == @order.id
         @current_order << orderdrink
       end
     end
     @current_order
+    # binding.pry
     erb :"/orders/show_order"
   end
 
@@ -37,9 +47,14 @@ class OrdersController < ApplicationController
   end
 
   patch "/orders/:id" do
-    binding.pry
+#params => {"_method"=>"patch",
+ # "drinks"=>["2"],
+ # "favorite"=>"false",
+ # "submit"=>"Update my Order!",
+ # "id"=>"4"}
     @user = User.find_by_id(session[:user_id]) #Find user
     @order = Order.find_by_id(params[:id]) #Find order through session params
+# binding.pry
     @orderdrink = OrderDrink.find_by(@user.id) #Find OrderDrink assoc with this user
     old_drink = Drink.find_by_id(@orderdrink.drink_id)
     new_drink = Drink.find_by_id(params[:drinks])

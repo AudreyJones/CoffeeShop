@@ -4,6 +4,8 @@
 
 </h1>
 <br>
+<%%>
+<!-- We should be iterating through the order's orderdrinks and puts'ing each drink-->
 <ul><%@current_order.each do |orderdrink|%>
   <li><%this_drink = Drink.find_by_id(orderdrink.drink_id)%></li>
   <%=this_drink.drink_type%>
