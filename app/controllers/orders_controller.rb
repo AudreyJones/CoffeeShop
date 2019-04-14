@@ -29,9 +29,9 @@ class OrdersController < ApplicationController
     erb :"/orders/show_order"
   end
 
-  get "/orders/:id/edit" do #Update/Edit Sepcific Order
+  get "/orders/:id/edit" do #Update/Edit Specific Order
     @user = User.find_by_id(session[:user_id])
-    @order = Order.find_by(user_id: @user.id)
+    @order = Order.find_by_id(params[:id])
     @drinks = Drink.all
     erb :"/orders/edit_order"
   end
@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
  # "id"=>"4"}
     @user = User.find_by_id(session[:user_id]) #Find user
     @order = Order.find_by_id(params[:id]) #Find order through session params
-# binding.pry
+binding.pry
     @orderdrink = OrderDrink.find_by(@user.id) #Find OrderDrink assoc with this user
     old_drink = Drink.find_by_id(@orderdrink.drink_id)
     new_drink = Drink.find_by_id(params[:drinks])
