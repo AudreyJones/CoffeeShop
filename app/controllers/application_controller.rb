@@ -18,10 +18,4 @@ class ApplicationController < Sinatra::Base
       erb  :"/home"
     end
   end
-  # get "/orders/new_order" do
-  #   # flash[:message] = "a string"
-  #   # binding.pry
-  #   erb :"orders/new_order"
-  # end
-
 end
