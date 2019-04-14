@@ -16,8 +16,6 @@ class OrdersController < ApplicationController
     erb :"/users/homepage" #Go to User's Index/Homepage
   end
 
-
-
   get "/orders/:id" do #Specific Order Show Page
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by_id(params[:id])
