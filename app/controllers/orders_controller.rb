@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
   get "/orders/:id" do #Specific Order Show Page
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by_id(params[:id])
-
     @current_order = []
     OrderDrink.all.each do |orderdrink|
       if (orderdrink.order_id).to_i == @order.id
@@ -27,7 +26,6 @@ class OrdersController < ApplicationController
       end
     end
     @current_order
-    binding.pry
     erb :"/orders/show_order"
   end
 
@@ -39,6 +37,7 @@ class OrdersController < ApplicationController
   end
 
   patch "/orders/:id" do
+    binding.pry
     @user = User.find_by_id(session[:user_id]) #Find user
     @order = Order.find_by_id(params[:id]) #Find order through session params
     @orderdrink = OrderDrink.find_by(@user.id) #Find OrderDrink assoc with this user
@@ -52,6 +51,7 @@ class OrdersController < ApplicationController
   end
 
   post "/orders/:id/delete" do
+    binding.pry
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by(user_id: @user.id)
     @order.destroy

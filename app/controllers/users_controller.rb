@@ -29,10 +29,9 @@ class UsersController < ApplicationController
 
 # User accesses Log In Page
     get '/login' do
+      # binding.pry
       @user = User.find_by_id(session[:user_id])
-      if @user == nil
-        erb :"/users/signup"
-      elsif @user != nil && Helpers.is_logged_in?(session) == true
+      if @user != nil && Helpers.is_logged_in?(session) == true
         redirect to "/users/homepage"
       else
         erb :"/users/login"
@@ -65,9 +64,8 @@ class UsersController < ApplicationController
     end
 
     get '/users/homepage' do
+      @user = User.find_by_id(session[:user_id])
       if @user != nil && Helpers.is_logged_in?(session) == true
-        @user = User.find_by_id(session[:user_id])
-# binding.pry
         erb :"/users/homepage"
       else
         erb  :"/users/login"
