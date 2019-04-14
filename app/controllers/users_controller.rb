@@ -2,10 +2,14 @@ class UsersController < ApplicationController
 
 # User accesses Sign Up Page, protected view
   get '/signup' do
-    if Helpers.is_logged_in?(session) == true
-      redirect to "/users/homepage"
-    else
+    @user = User.find_by_id(session[:user_id])
+    # binding.pry
+    if @user == nil
       erb :"/users/signup"
+    elsif @user != nil && Helpers.is_logged_in?(session) == true
+      redirect to "/users/homepage"
+    elsif @user != nil && Helpers.is_logged_in?(session) == false
+      erb :"/users/login"
     end
   end
 
@@ -25,7 +29,7 @@ class UsersController < ApplicationController
 
 # User accesses Log In Page
     get '/login' do
-      if Helpers.is_logged_in?(session) == true
+      if @user != nil && Helpers.is_logged_in?(session) == true
         redirect to "/users/homepage"
       else
         erb :"/users/login"
@@ -35,7 +39,7 @@ class UsersController < ApplicationController
     post '/login' do
       @user = User.find_by(username: params[:username])
       session[:user_id] = @user.id
-      if Helpers.is_logged_in?(session)
+      if @user != nil && Helpers.is_logged_in?(session)
         redirect to "/users/homepage"
       else
         erb :login
@@ -57,7 +61,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/homepage' do
-      if Helpers.is_logged_in?(session) == true
+      if @user != nil && Helpers.is_logged_in?(session) == true
         @user = User.find_by_id(session[:user_id])
 # binding.pry
         erb :"/users/homepage"

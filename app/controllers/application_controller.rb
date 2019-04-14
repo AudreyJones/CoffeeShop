@@ -11,9 +11,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :"/home"
+    @user = User.find_by_id(session[:user_id])
+    if @user != nil && Helpers.is_logged_in?(session) == true
+      erb :"/users/homepage"
+    else
+      erb  :"/home"
+    end
   end
-
   # get "/orders/new_order" do
   #   # flash[:message] = "a string"
   #   # binding.pry
