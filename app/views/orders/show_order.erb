@@ -4,11 +4,10 @@
 
 </h1>
 <br>
-<%%>
 <!-- We should be iterating through the order's orderdrinks and puts'ing each drink-->
-<ul><%@current_order.each do |orderdrink|%>
-  <li><%this_drink = Drink.find_by_id(orderdrink.drink_id)%></li>
-  <%=this_drink.drink_type%>
+<ul><%@order_drinks.each do |orderdrink|%>
+  <li><%specific_drink = Drink.find_by_id(orderdrink.drink_id)%></li>
+  <%=specific_drink.drink_type%>
 <%end%></ul>
 <br>
 <a href="/orders/<%=@order.id%>/edit" >Edit this order?</a>

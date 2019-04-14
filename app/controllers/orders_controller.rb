@@ -25,17 +25,7 @@ class OrdersController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @order = Order.find_by_id(params[:id])
 #Need to find OrderDrinks linked to this Order
-# binding.pry
-    @current_order = []
-    # binding.pry
-    OrderDrink.all.each do |orderdrink|
-      # binding.pry
-      if (orderdrink.order_id).to_i == @order.id
-        @current_order << orderdrink
-      end
-    end
-    @current_order
-    # binding.pry
+    @order_drinks = @order.order_drinks
     erb :"/orders/show_order"
   end
 
