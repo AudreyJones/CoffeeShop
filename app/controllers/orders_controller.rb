@@ -45,14 +45,17 @@ class OrdersController < ApplicationController
     @user = User.find_by_id(session[:user_id]) #Find user
     @order = Order.find_by_id(params[:id]) #Find order through session params
 
-    @these_drinks = @order.order_drinks #returns an array of orderdrink objects making up this order
-    @these_drinks.map do |orderdrink| #changes array to hold drink_id's of all drinks in the order
-      orderdrink.drink_id
+    @this_orders_drink_ids = []
+     #@order.order_drinks -- returns an array of orderdrink objects making up this order
+    @order.order_drinks.each do |orderdrink| #changes array to hold drink_id's of all drinks in the order
+      @this_orders_drink_ids << orderdrink.drink_id
     end
+    @this_orders_drink_ids
       #compare each orderdrink's drink_type with that in params[:drink] array....
       #....Keep what matches, change what doesn't(including erasing if need be!)
       # Change favorite status as well!
-      @these_drinks.zip(params[:drinks]).map { |a,b| a == b } #Element-wise comparison of the two arrays
+      # @this_orders_drink_ids.zip(params[:drinks]).map { |a,b| a == b } #Element-wise comparison of the two arrays
+    duplicates = np.intersect1d(@this_orders_drink_ids, params[:drinks])
 binding.pry
     old_drink = Drink.find_by_id(@orderdrink.drink_id)
     new_drink = Drink.find_by_id(params[:drinks])
