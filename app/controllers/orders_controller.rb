@@ -51,6 +51,7 @@ class OrdersController < ApplicationController
     @drinks = params[:drinks]
     @drinks.each do |drink|
       @orderdrink = OrderDrink.create(order_id: @order.id ,drink_id: drink)
+      
     end
     @orderdrink
     @order.order_drinks.clear #Clear out current order's orderdrinks!
