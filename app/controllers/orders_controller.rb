@@ -44,8 +44,20 @@ class OrdersController < ApplicationController
  # "id"=>"4"}
     @user = User.find_by_id(session[:user_id]) #Find user
     @order = Order.find_by_id(params[:id]) #Find order through session params
-binding.pry
-    @orderdrink = OrderDrink.find_by(@user.id) #Find OrderDrink assoc with this user
+
+    @these_drinks = @order.order_drinks #returns an array of orderdrink objects making up this order
+    @these_drinks.each do |orderdrink|
+      #compare each orderdrink's drink_type with that in params[:drink] array....
+      #....Keep what matches, change what doesn't(including erasing if need be!)
+      # Change favorite status as well!
+      binding.pry
+      if orderdrink.drink_type ==
+
+      elsif
+        
+      else
+    end
+
     old_drink = Drink.find_by_id(@orderdrink.drink_id)
     new_drink = Drink.find_by_id(params[:drinks])
     @orderdrink.drink_id = new_drink.id #Update OrderDrink with New Drink choice!
