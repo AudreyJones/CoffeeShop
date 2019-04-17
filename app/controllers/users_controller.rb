@@ -34,17 +34,18 @@ class UsersController < ApplicationController
       if @user != nil && Helpers.is_logged_in?(session) == true
         redirect to "/users/homepage"
       else
-        erb :"/"
+        erb :"/users/login"
       end
     end
 
     post '/login' do
       @user = User.find_by(username: params[:username])
-      session[:user_id] = @user.id
+      # binding.pry
       if @user != nil && Helpers.is_logged_in?(session)
+        session[:user_id] = @user.id
         redirect to "/users/homepage"
       else
-        erb :login
+        erb :"/users/signup"
       end
     end
 
@@ -91,7 +92,7 @@ class UsersController < ApplicationController
       if @user != nil && Helpers.is_logged_in?(session) == true
         erb :"/users/updated_account"
       else
-        erb  :"/"
+        redirect to "/"
       end
     end
 
@@ -100,7 +101,7 @@ class UsersController < ApplicationController
       if @user != nil && Helpers.is_logged_in?(session) == true
         erb :"/users/terminate_account" #take User to terminate_account page
       else
-        erb  :"/" #take User to home to signup or login
+        redirect to "/" #take User to home to signup or login
       end
     end
 
