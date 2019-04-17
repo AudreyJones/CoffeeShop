@@ -91,8 +91,26 @@ class UsersController < ApplicationController
       if @user != nil && Helpers.is_logged_in?(session) == true
         erb :"/users/updated_account"
       else
-        erb  :"/users/login"
+        erb  :"/"
       end
+    end
+
+    get '/users/:id/terminate_account' do
+      @user = User.find_by_id(session[:user_id])
+      if @user != nil && Helpers.is_logged_in?(session) == true
+        erb :"/users/terminate_account" #take User to terminate_account page
+      else
+        erb  :"/" #take User to home to signup or login
+      end
+    end
+
+    get '/users/delete_account' do
+      @user = User.find_by_id(session[:user_id]) #Re-find User
+       #log out User
+  # binding.pry
+      @user.destroy #remove User info from database
+      session.clear
+      redirect to "/users/delete_successful"
     end
 
 end
