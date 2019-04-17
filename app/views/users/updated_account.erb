@@ -1,6 +1,13 @@
 <h1><%=@user.username%>, here is your updated account info:</h1>
 <br>
 <br>
-
-
-<>
+  <ul>
+    <li>Username: <%=@user.username%></li>
+    <li>Password: <%=@user.password%></li>
+    <li>Email: <%=@user.email%></li>
+  </ul>
+<br>
+  <ul>
+    <li><a href="/users/<%=@user.id%>/edit_account">I'd like to edit again.</a></li>
+    <li>Great!<a href="/users/homepage">Back to my homepage!</a></li>
+  </ul>

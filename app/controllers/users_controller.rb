@@ -87,6 +87,7 @@ class UsersController < ApplicationController
       @user.username = params[:username]
       @user.password = params[:password]
       @user.email = params[:email]
+      @user.save
       if @user != nil && Helpers.is_logged_in?(session) == true
         erb :"/users/updated_account"
       else
