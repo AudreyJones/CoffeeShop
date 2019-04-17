@@ -1,0 +1,15 @@
+<h1>Edit your Account:</h1>
+
+<form method="post" action="/users/<%=@user.id%>/edit_account">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <input type="text" id="username" name="username" value="username" required/>
+  <input type="text" id="email" name="email" value="email"required/>
+  <input type="text" id="password" name="password" value="password" required/>
+  <br>
+  <br>
+  <input type="submit" id="submit" name="submit" value="Update my Account!"/>
+</form>
+<br>
+<ul>
+  <li>Just Kidding! <a href="/users/homepage">Back to my Homepage, please.</a></li>
+</ul>

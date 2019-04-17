@@ -72,4 +72,26 @@ class UsersController < ApplicationController
       end
     end
 
+    get '/users/:id/edit_account' do
+      @user = User.find_by_id(session[:user_id])
+      if @user != nil && Helpers.is_logged_in?(session) == true
+        erb :"/users/edit_account"
+      else
+        erb  :"/users/login"
+      end
+    end
+
+    patch '/users/:id/edit_account' do
+      @user = User.find_by_id(session[:user_id]) #Re-find User to update
+      #Update User info based on edit_account's input
+      @user.username = params[:username]
+      @user.password = params[:password]
+      @user.email = params[:email]
+      if @user != nil && Helpers.is_logged_in?(session) == true
+        erb :"/users/updated_account"
+      else
+        erb  :"/users/login"
+      end
+    end
+
 end
