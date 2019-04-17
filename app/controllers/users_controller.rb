@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       if @user != nil && Helpers.is_logged_in?(session) == true
         redirect to "/users/homepage"
       else
-        erb :"/users/login"
+        erb :"/"
       end
     end
 
@@ -106,11 +106,10 @@ class UsersController < ApplicationController
 
     get '/users/delete_account' do
       @user = User.find_by_id(session[:user_id]) #Re-find User
-       #log out User
   # binding.pry
       @user.destroy #remove User info from database
       session.clear
-      redirect to "/users/delete_successful"
+      erb :"/users/delete_successful"
     end
 
 end
