@@ -39,27 +39,16 @@ class OrdersController < ApplicationController
   patch "/orders/:id" do
     @user = User.find_by_id(session[:user_id]) #Find user
     @order = Order.find_by_id(params[:id]) #Find order through session params
-    @array = []
-    OrderDrink.all.each do |orderdrink|
-      if orderdrink.order_id == @order.id
-        @array << orderdrink
-      end
-      @array
-    end
-    @array
-#Create new orderdrinks and associate with current order!
-    @drinks = params[:drinks]
-    @drinks.each do |drink|
-      @orderdrink = OrderDrink.create(order_id: @order.id ,drink_id: drink)
-      
+# binding.pry
+    @order.order_drinks.clear #Clear out current order's orderdrinks!
+#Create new orderdrinks and associate with current order! (Replacing them)
+    @drinks = params[:drinks] # Returns an array of drink_id's
+    @drinks.each do |drink| # Iterate over the array and take each drink_id...
+      @orderdrink = OrderDrink.create(order_id: @order.id ,drink_id: drink) #....and create a new orderdrink that is associated w/ the order!
     end
     @orderdrink
-    @order.order_drinks.clear #Clear out current order's orderdrinks!
-    binding.pry
     @order.favorite = params[:favorite] #Update favorite-ness of OrderDrink record
-    # @orderdrink.save
-    # @order.save
-    erb :"/users/homepage" #Go to User's Index/Homepage
+    erb :"/users/homepage" #Go to User's Index/Homepage to show new updated order in User's index!
   end
 
   get "/orders/:id/delete" do #Delete order and orderdrink from db
