@@ -1,6 +1,6 @@
 <h1>Edit Order #<%=@order.id%>:</h1>
 
-<form method="post" action="/users/<%=@order.id%>">
+<form method="post" action="/orders/<%=@order.id%>">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <ul><label>What drink type would you like to change your order to?</label>
         <%@drinks.each do |drink|%>
