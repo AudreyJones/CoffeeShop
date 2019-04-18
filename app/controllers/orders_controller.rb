@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
     #Find user, order, and orderdrink again
     @user = User.find_by_id(session[:user_id])
     order = Order.find_by_id(params[:id])
-    orderdrinks = @order.order_drinks
+    orderdrinks = order.order_drinks
     orderdrinks.destroy
     # @order.order_drinks.clear #rids association to orderdrinks and specific drinks
     # @user.orders.clear #rids association to User
