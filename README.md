@@ -5,13 +5,16 @@ This is a web app that uses Ruby, Sinatra, ActiveRecord, and Sqlite3 in order to
 Once you clone down the repo from , run "bundle install", and then shotgun to run the app! Enjoy!
 
 Clone down the app's repo in your terminal using:
-$ git clone https://github.com/AudreyJones/CoffeeShop.git
+
+  $ git clone https://github.com/AudreyJones/CoffeeShop.git
 
 Run the following to bundle and install all require gems
+
 $ bundle install
 
 Run shotgun to get the IP address to get access via a web browser!
-$ shotgun
+
+  $ shotgun
 
 Usage
 To use the CoffeeShop web app, simply type in your terminal: 'git clone https://github.com/AudreyJones/CoffeeShop.git' to clone down the app's repository.
