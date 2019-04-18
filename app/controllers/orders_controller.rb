@@ -58,13 +58,8 @@ class OrdersController < ApplicationController
     order = Order.find_by_id(params[:id])
     orderdrinks = order.order_drinks
     orderdrinks.destroy
-    # @order.order_drinks.clear #rids association to orderdrinks and specific drinks
-    # @user.orders.clear #rids association to User
     order.destroy
-    # binding.pry
-    # binding.pry
-    #Send user back to their homepage
-    redirect to "/users/homepage"
+    redirect to "/users/homepage" #Send user back to their homepage
   end
 
 end
