@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     @user = User.find_by_id(session[:user_id]) #Find user
     @order = Order.find_by_id(params[:id]) #Find order through session params
     @order.order_drinks.clear #clears order_id from related orderdrinks
-    
+
 #Create new orderdrinks and associate with current order! (Functionally replacing them)
     @drinks = params[:drinks] # Returns an array of drink_id's
     @drinks.each do |drink| # Iterate over the array and take each drink_id...
@@ -55,11 +55,13 @@ class OrdersController < ApplicationController
   get "/orders/:id/delete" do #Delete order and orderdrink from db
     #Find user, order, and orderdrink again
     @user = User.find_by_id(session[:user_id])
-    @order = Order.find_by(params[:id])
-    @orderdrink = OrderDrink.find_by_id(@order.id)
-    #Delete this specific order and orderdrink from database
-    @order.destroy
-    @orderdrink.destroy
+    order = Order.find_by_id(params[:id])
+    orderdrinks = @order.order_drinks
+    orderdrinks.destroy
+    # @order.order_drinks.clear #rids association to orderdrinks and specific drinks
+    # @user.orders.clear #rids association to User
+    order.destroy
+    # binding.pry
     # binding.pry
     #Send user back to their homepage
     redirect to "/users/homepage"
